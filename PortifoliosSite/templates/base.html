@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div id="cabecalho"> 
+            <h2>Titulo</h2>
+            <div>
+                <img src="{% static 'img/menu.png' %}" alt="menu">
+            </div>
+            {% if user.is_authenticated %}
+                <div id="user_conteiner">
+                    <a href="#">{{user.username}}</a>
+                    <a href="#" class="site_button">Logout</a>
+                </div> 
+
+            {% else %}
+                <div class="user_conteiner">
+                    <a href="#" id="site_button">Login</a>
+                    <a href="#">Cadastrar</a>
+                </div>
+            {% endif %}
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+            {% if user.is_authenticated %}
+                <div id="user_conteiner">
+                    <a href="#">{{user.username}}</a>
+                    <a href="#" class="site_button">Logout</a>
+                </div> 
+
+            {% else %}
+                <div class="user_conteiner">
+                    <a href="#" id="site_button">Login</a>
+                    <a href="#">Cadastrar</a>
+                </div>
+            {% endif %}
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    
+</body>
+</html>
